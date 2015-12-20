@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>popup</title>
+<link rel="stylesheet" href="css/popup.css">
+<script src="all.js"></script>
+<script src="content.js"></script>
+<script src="highlighter.js"></script>
+<script src="string_utils.js"></script>
+<script src="xpath.js"></script>
+<script src="popup.js"></script>
+<!-- For test -->
+<!-- <script src="popup.js"></script> -->
+</head>
+<body>
+<div id="fb-root"></div>
+<script>
+	window.fbAsyncInit = function() {
+		FB.init({
+	    	appId      : '1023684864336462',
+	    	status     : true,
+	    	cookie	   : true,
+	    	xfbml      : true,
+	    	version    : 'v2.4' // or v2.0, v2.1, v2.2, v2.3
+	  	});
+	};
+	(function(d, s, id) {
+  		var js, fjs = d.getElementsByTagName(s)[0];
+  		if (d.getElementById(id)) return;
+  		js = d.createElement(s); js.id = id;
+  		js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=1023684864336462";
+  		fjs.parentNode.insertBefore(js, fjs);
+	}
+	(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div id="main">
+<!-- For test -->
+<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
+<a id="bookmark" href="#" onclick="highlightSelection()">
+    <div id="bookmark-annotate">
+    	<b class="icon" style="background-color: red;"></b>
+    	Annotate
+    </div>
+</a>
+<a id="read-later" href="javascript:void(0)">
+<b class="icon" style="background-color: orange;"></b>Read Later
+</a>
+<a id="screenshot" href="javascript:void(0)">
+<b class="icon" style="background-color: yellow;"></b>Screenshot
+</a>
+<a id="share" href="javascript:void(0)">
+	<b class="icon" style="background-color: green;"></b>Share This Page
+</a>
+<a id="research-mode" href="javascript:void(0)">
+    <b class="icon" style="background-color: cyan;"></b>Focused Research
+</a>
+<a id="search" href="javascript:void(0)">
+    <b class="icon" style="background-color: blue;"></b>Search
+</a>
+<a id="cached" href="javascript:void(0)">
+	<b class="icon" style="background-color: purple;"></b>Cached version
+</a>
+</div><!--end #main-->
+
+</div><!--end #search-main-->
+</body>
+</html>
