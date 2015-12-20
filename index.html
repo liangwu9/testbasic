@@ -33,29 +33,31 @@
   		fjs.parentNode.insertBefore(js, fjs);
 	}
 	(document, 'script', 'facebook-jssdk'));
-	FB.getLoginStatus(function(response) {
-	  if (response.status === 'connected') {
-	    // the user is logged in and has authenticated your
-	    // app, and response.authResponse supplies
-	    // the user's ID, a valid access token, a signed
-	    // request, and the time the access token 
-	    // and signed request each expire
-	    var uid = response.authResponse.userID;
-	    var accessToken = response.authResponse.accessToken;
-	    alert(uid+"\n"+accessToken);
-	  } else if (response.status === 'not_authorized') {
-	    // the user is logged in to Facebook, 
-	    // but has not authenticated your app
-	  } else {
-	    // the user isn't logged in to Facebook.
-	  }
-	 });
+	function test() {
+		FB.getLoginStatus(function(response) {
+		  if (response.status === 'connected') {
+		    // the user is logged in and has authenticated your
+		    // app, and response.authResponse supplies
+		    // the user's ID, a valid access token, a signed
+		    // request, and the time the access token 
+		    // and signed request each expire
+		    var uid = response.authResponse.userID;
+		    var accessToken = response.authResponse.accessToken;
+		    alert(uid+"\n"+accessToken);
+		  } else if (response.status === 'not_authorized') {
+		    // the user is logged in to Facebook, 
+		    // but has not authenticated your app
+		  } else {
+		    // the user isn't logged in to Facebook.
+		  }
+		 });
+	}
 </script>
 
 <div id="main">
 <!-- For test -->
 <div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
-<a id="bookmark" href="#" onclick="highlightSelection()">
+<a id="bookmark" href="#" onclick="test()">
     <div id="bookmark-annotate">
     	<b class="icon" style="background-color: red;"></b>
     	Annotate
