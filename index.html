@@ -36,9 +36,11 @@
 	window.fbAsyncInit = function() {
             // The SDK is loaded so let's init it.
             FB.init({
-                        appId : '<Replace it with your app id>',
+                        appId : '1023684864336462',
+                        status: true,
+                        cookie: true,
                         xfbml : true,
-                        version : 'v2.1'
+                        version : 'v2.4'
             });
             // We check the user's login status
             FB.getLoginStatus(function(response) {
