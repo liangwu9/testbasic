@@ -26,7 +26,7 @@ FB.getLoginStatus(function (response) {
  // This is your messaging to the parent of the iFrame
  parent.postMessage({connectStatus:"" + response.status + "", userID:"" + uid + "", accessToken:"" + at + ""}, "http://localhost");
  //This MUST match the root domain where the iFrame will be inserted, or the message won't get passed
- alert(uid + " " + at);
+ //alert(uid + " " + at);
    
  } else if (response.status === 'not_authorized') {
  // the user is logged in to Facebook,
