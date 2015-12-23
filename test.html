@@ -1,13 +1,6 @@
 <!doctype html>
 <html>
 <head>
-<title>Page Redirection</title>
-
-</head>
-
-
-<body>
-<div id="fb-root"></div>
 <script language="javascript">
 	window.fbAsyncInit = function() {
             // The SDK is loaded so let's init it.
@@ -19,6 +12,17 @@
                         version : 'v2.4'
             });
             // We check the user's login status
+            FB.getLoginStatus(function(response) {
+  		if (response.status === 'connected') {
+    			var uid = response.authResponse.userID;
+    			var accessToken = response.authResponse.accessToken;
+			 window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=" + uid;
+  		} else if (response.status === 'not_authorized') {
+    			window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=none";
+  		} else {
+			window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=none";
+  		}
+ 	    });
 	};
 	
 	(function(d, s, id) {
@@ -29,19 +33,17 @@
   		fjs.parentNode.insertBefore(js, fjs);
 	}
 	(document, 'script', 'facebook-jssdk'));
-	FB.getLoginStatus(function(response) {
-  		if (response.status === 'connected') {
-    			var uid = response.authResponse.userID;
-    			var accessToken = response.authResponse.accessToken;
-			 window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=" + uid;
-  		} else if (response.status === 'not_authorized') {
-    			window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=none";
-  		} else {
-			window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=none";
-  		}
- 	});
 	
-</script>	
+	
+</script>
+<title>Page Redirection</title>
+
+</head>
+
+
+<body>
+<div id="fb-root"></div>
+	
 	
 <center>
 <h1>Page Redirection</h1>
