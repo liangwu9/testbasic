@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>popup</title>
+<link rel="stylesheet" href="css/popup.css">
+<script src="all.js"></script>
+<script src="content.js"></script>
+<script src="highlighter.js"></script>
+<script src="string_utils.js"></script>
+<script src="xpath.js"></script>
+<script src="popup.js"></script>
+<!-- For test -->
+<!-- <script src="popup.js"></script> -->
+</head>
+<body>
+<div id="fb-root"></div>
+<script>
+	// Once the SDK is initialized and user is logged in (see below), get friends list.
+	getFriendsList = function() {
+            //FB.api('/me/friends', function(response) {
+            //            console.log(response);
+            //});
+            FB.api('/me/taggable_friends', function(response) {
+	        console.log('Got friends: ', response.data);
+            });
+	};
+	// window.fbAsyncInit = function() {
+	// 	FB.init({
+	//     	appId      : '1023684864336462',
+	//     	status     : true,
+	//     	cookie	   : true,
+	//     	xfbml      : true,
+	//     	version    : 'v2.4' // or v2.0, v2.1, v2.2, v2.3
+	//   	});
+	// };
+	
+	window.fbAsyncInit = function() {
+            // The SDK is loaded so let's init it.
+            FB.init({
+                        appId : '1023684864336462',
+                        status: true,
+                        cookie: true,
+                        xfbml : true,
+                        version : 'v2.4'
+            });
+            // We check the user's login status
+            FB.getLoginStatus(function(response) {
+                        if (response.status === 'connected') {
+                                    // If user is already logged in on your site with FB, we get the friends list now.
+                                    getFriendsList();
+                        } else {
+                                    // If the user is NOT already logged in, we ask him to do it first
+                                    FB.login(function(response) {
+                                                if (response.authResponse) {
+                                                            // User logged in, let's get the friends list.
+                                                            getFriendsList();
+                                                } else {
+                                                            // User refused to give your site permissions, no friends list !
+                                                }
+                                    }, {scope:'email,user_friends'});
+                        }
+            });
+	};
+	
+	(function(d, s, id) {
+  		var js, fjs = d.getElementsByTagName(s)[0];
+  		if (d.getElementById(id)) return;
+  		js = d.createElement(s); js.id = id;
+  		js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=1023684864336462";
+  		fjs.parentNode.insertBefore(js, fjs);
+	}
+	(document, 'script', 'facebook-jssdk'));
+	function test() {
+		FB.getLoginStatus(function(response) {
+		  if (response.status === 'connected') {
+		    // the user is logged in and has authenticated your
+		    // app, and response.authResponse supplies
+		    // the user's ID, a valid access token, a signed
+		    // request, and the time the access token 
+		    // and signed request each expire
+		    var uid = response.authResponse.userID;
+		    var accessToken = response.authResponse.accessToken;
+		    alert(uid+"\n"+accessToken);
+		  } else if (response.status === 'not_authorized') {
+		    // the user is logged in to Facebook, 
+		    // but has not authenticated your app
+		  } else {
+		    // the user isn't logged in to Facebook.
+		  }
+		 });
+	}
+</script>
+
+<div id="main">
+<!-- For test -->
+<div class="fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="true"></div>
+<a id="bookmark" href="#" onclick="test()">
+    <div id="bookmark-annotate">
+    	<b class="icon" style="background-color: red;"></b>
+    	Annotate
+    </div>
+</a>
+<a id="read-later" href="javascript:void(0)">
+<b class="icon" style="background-color: orange;"></b>Read Later
+</a>
+<a id="screenshot" href="javascript:void(0)">
+<b class="icon" style="background-color: yellow;"></b>Screenshot
+</a>
+<a id="share" href="javascript:void(0)">
+	<b class="icon" style="background-color: green;"></b>Share This Page
+</a>
+<a id="research-mode" href="javascript:void(0)">
+    <b class="icon" style="background-color: cyan;"></b>Focused Research
+</a>
+<a id="search" href="javascript:void(0)">
+    <b class="icon" style="background-color: blue;"></b>Search
+</a>
+<a id="cached" href="javascript:void(0)">
+	<b class="icon" style="background-color: purple;"></b>Cached version
+</a>
+</div><!--end #main-->
+
+</div><!--end #search-main-->
+</body>
+</html>
