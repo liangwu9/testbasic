@@ -23,13 +23,6 @@
   		fjs.parentNode.insertBefore(js, fjs);
 	}
 	(document, 'script', 'facebook-jssdk'));
-	
-</script>
-</head>
-
-
-<body>
-	<script>
 	FB.getLoginStatus(function(response) {
   		if (response.status === 'connected') {
     			var uid = response.authResponse.userID;
@@ -41,6 +34,14 @@
 			window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=none";
   		}
  	});
+	
+</script>
+</head>
+
+
+<body>
+	<script>
+	
  	</script>
 	
 <center>
