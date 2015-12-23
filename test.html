@@ -24,22 +24,25 @@
 	}
 	(document, 'script', 'facebook-jssdk'));
 	
-FB.getLoginStatus(function(response) {
-  if (response.status === 'connected') {
-    var uid = response.authResponse.userID;
-    var accessToken = response.authResponse.accessToken;
-     window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=" + uid;
-  } else if (response.status === 'not_authorized') {
-    window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=none";
-  } else {
-	window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=none";
-  }
- });
 </script>
 </head>
 
 
 <body>
+	<script>
+	FB.getLoginStatus(function(response) {
+  		if (response.status === 'connected') {
+    			var uid = response.authResponse.userID;
+    			var accessToken = response.authResponse.accessToken;
+			 window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=" + uid;
+  		} else if (response.status === 'not_authorized') {
+    			window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=none";
+  		} else {
+			window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=none";
+  		}
+ 	});
+ 	</script>
+	
 <center>
 <h1>Page Redirection</h1>
 </center>
