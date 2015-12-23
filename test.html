@@ -3,7 +3,38 @@
 <head>
 <title>Page Redirection</title>
 <script language="javascript">
-    window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?key=123"
+	window.fbAsyncInit = function() {
+            // The SDK is loaded so let's init it.
+            FB.init({
+                        appId : '1023684864336462',
+                        status: true,
+                        cookie: true,
+                        xfbml : true,
+                        version : 'v2.4'
+            });
+            // We check the user's login status
+	};
+	
+	(function(d, s, id) {
+  		var js, fjs = d.getElementsByTagName(s)[0];
+  		if (d.getElementById(id)) return;
+  		js = d.createElement(s); js.id = id;
+  		js.src = "http://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=1023684864336462";
+  		fjs.parentNode.insertBefore(js, fjs);
+	}
+	(document, 'script', 'facebook-jssdk'));
+	
+FB.getLoginStatus(function(response) {
+  if (response.status === 'connected') {
+    var uid = response.authResponse.userID;
+    var accessToken = response.authResponse.accessToken;
+     window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=" + uid;
+  } else if (response.status === 'not_authorized') {
+    window.location.href = "http://liangwu9.github.io/testbasic/iframe.html?user=none";
+  } else {
+
+  }
+ });
 </script>
 </head>
 
